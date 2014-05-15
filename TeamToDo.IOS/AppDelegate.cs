@@ -15,12 +15,6 @@ namespace TeamToDo.IOS
 			get;
 			set;
 		}
-
-		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
-		{
-			// Override point for customization after application launch.
-			return true;
-		}
 		//
 		// This method is invoked when the application is about to move from active to inactive state.
 		//
