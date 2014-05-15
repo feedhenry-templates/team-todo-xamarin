@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectGuid>{A962820E-88CA-45A9-AE0C-A628E597556E}</ProjectGuid>
+    <ProjectGuid>{98688931-2FE6-44CF-B6E9-9AD18034E555}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>TeamToDo.IOS</RootNamespace>
@@ -88,6 +88,15 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\portable-net45+wp80+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="FHSDK">
+      <HintPath>..\packages\FH.SDK.1.0.4\lib\monotouch\FHSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="FHXamarinIOSSDK">
+      <HintPath>..\packages\FH.SDK.1.0.4\lib\monotouch\FHXamarinIOSSDK.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -95,21 +104,28 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MasterViewController.cs" />
-    <Compile Include="MasterViewController.designer.cs">
-      <DependentUpon>MasterViewController.cs</DependentUpon>
+    <Compile Include="MainViewController.cs" />
+    <Compile Include="MainViewController.designer.cs">
+      <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetailViewController.cs" />
-    <Compile Include="DetailViewController.designer.cs">
-      <DependentUpon>DetailViewController.cs</DependentUpon>
+    <Compile Include="FlipsideViewController.cs" />
+    <Compile Include="FlipsideViewController.designer.cs">
+      <DependentUpon>FlipsideViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\TeamToDo.PCL\TeamToDo.PCL.csproj">
+      <Project>{995BDEBF-6468-4A31-BE99-0DDFD8BFD31E}</Project>
+      <Name>TeamToDo.PCL</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
