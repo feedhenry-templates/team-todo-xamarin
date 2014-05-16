@@ -1,6 +1,11 @@
 ﻿using MonoTouch.UIKit;
 using System;
 using MonoTouch.Foundation;
+using FHSDK.Touch;
+using FHSDK.Services;
+using TeamToDo.PCL;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace TeamToDo.IOS
 {
@@ -24,7 +29,8 @@ namespace TeamToDo.IOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-			
+            FHClient.SetLogLevel((int)LogService.LogLevels.DEBUG);
+            FHClient.Init();
             // Perform any additional setup after loading the view, typically from a nib.
         }
 
@@ -50,8 +56,50 @@ namespace TeamToDo.IOS
 
         #endregion
 
-        partial void showInfo(NSObject sender)
+        partial void LoginTouched (UIButton sender)
         {
+            LoginTouchedAsync(sender);
+        }
+
+        public async Task LoginTouchedAsync (UIButton sender)
+        {
+            string userName = this.usernameField.Text;
+            string password = this.passwordField.Text;
+            if(userName.Length == 0 || password.Length == 0){
+                ShowAlert("Error", "Please enter your username and password");
+            }
+            try{
+                UserManager userManager = UserManager.GetInstance();
+                UIActivityIndicatorView activityView = new UIActivityIndicatorView();
+                activityView.ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray;
+                activityView.Center = this.View.Center;
+                this.View.AddSubview(activityView);
+                activityView.StartAnimating();
+
+                await userManager.Login(userName, password);
+
+                activityView.StopAnimating();
+                activityView.RemoveFromSuperview();
+
+                UIStoryboard sb = UIStoryboard.FromName("MainStoryboard", null);
+                UINavigationController listView = (UINavigationController)sb.InstantiateViewController("tasklistViewController");
+                this.PresentViewController(listView, true, null);
+
+
+            }catch(Exception e){
+                Debug.WriteLine(e.Message);
+                ShowAlert("Error", "Login Failed");
+            }
+        }
+
+        private void ShowAlert(string title, string message)
+        {
+            UIAlertView alert = new UIAlertView()
+            {
+                Title = title, Message = message
+            };
+            alert.AddButton("OK");
+            alert.Show();
         }
     }
 }

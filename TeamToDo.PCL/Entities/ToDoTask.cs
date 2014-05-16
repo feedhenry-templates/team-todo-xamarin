@@ -24,8 +24,7 @@ namespace TeamToDo.PCL
 		public string Description { get; set ;}
 
 		[JsonProperty("deadline")]
-		[JsonConverter(typeof(JavaScriptDateTimeConverter))]
-		public DateTime Deadline { get; set; }
+		public string Deadline { get; set; }
 
 		[JsonProperty("assignedTo")]
 		public User AssignedTo { get; set;}

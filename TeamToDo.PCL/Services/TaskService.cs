@@ -4,6 +4,8 @@ using FHSDK;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace TeamToDo.PCL
 {
@@ -38,7 +40,9 @@ namespace TeamToDo.PCL
 		{
 			FHResponse listRes = await this.CallService ("fetchToDoAction", null, null);
 			JObject resJson = listRes.GetResponseAsJObject ();
-			List<ToDoTask> tasks = JsonConvert.DeserializeObject<List<ToDoTask>> ((string)resJson ["payload"] ["fetchToDos"] ["toDoList"]);
+
+			JArray todolist = (JArray)resJson["response"]["payload"]["fetchToDos"]["toDoList"];
+			List<ToDoTask> tasks = JsonConvert.DeserializeObject<List<ToDoTask>> (todolist.ToString());
 			return tasks;
 		}
 
@@ -51,7 +55,7 @@ namespace TeamToDo.PCL
 				rp.AddPayload (payloadKey, task);
 			}
 
-			FHResponse res = await FH.Cloud (serviceName, "POST", null, rp.ToDictionary ());
+			FHResponse res = await FH.Cloud ("/cloud/" + serviceName, "POST", null, rp.ToDictionary ());
 			if (null == res.Error) {
 				return res;
 			} else {

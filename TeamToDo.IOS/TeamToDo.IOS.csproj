@@ -100,6 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\images\lock.png" />
+    <BundleResource Include="Resources\images\user.png" />
+    <BundleResource Include="fhconfig.plist" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -113,10 +116,11 @@
     <Compile Include="MainViewController.designer.cs">
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="FlipsideViewController.cs" />
-    <Compile Include="FlipsideViewController.designer.cs">
-      <DependentUpon>FlipsideViewController.cs</DependentUpon>
-    </Compile>
+    <Compile Include="TodoTaskListViewSource.cs" />
+    <Compile Include="TodoTaskListViewController.cs" />
+    <Compile Include="TodoTaskListViewController.designer.cs" />
+    <Compile Include="TaskDetailsViewController.designer.cs" />
+    <Compile Include="TaskDetailsViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />

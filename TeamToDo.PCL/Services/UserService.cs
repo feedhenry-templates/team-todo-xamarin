@@ -22,7 +22,7 @@ namespace TeamToDo.PCL
 			FHResponse loginRes = await FH.Cloud("/cloud/authenticateAction", "POST", null, loginParams);
 			if (loginRes.Error == null) {
 				JObject resJson = loginRes.GetResponseAsJObject ();
-				string sessionId = (string)resJson["header"]["sessionId"];
+				string sessionId = (string)resJson["response"]["header"]["sessionId"];
 				user.Session = new Session (sessionId);
 			} else {
 				throw loginRes.Error;
@@ -48,7 +48,7 @@ namespace TeamToDo.PCL
 			FHResponse listRes = await FH.Cloud ("/cloud/fetchUserListAction", "POST", null, rp.ToDictionary ());
 			if (null == listRes.Error) {
 				JObject resJson = listRes.GetResponseAsJObject ();
-				List<User> users = JsonConvert.DeserializeObject<List<User>> ((string)resJson ["payload"] ["fetchUsers"] ["userList"]);
+				List<User> users = JsonConvert.DeserializeObject<List<User>> ((string)resJson["response"] ["payload"] ["fetchUsers"] ["userList"]);
 				return users;
 			} else {
 				throw listRes.Error;

@@ -98,13 +98,13 @@ namespace TeamToDo.PCL
 		}
 
 		/// <summary>
-		/// Get the current logged in user's session id
+		/// Get the current logged in user's session
 		/// </summary>
-		/// <returns>The session identifier.</returns>
-		public string GetSessionId()
+		/// <returns>The session</returns>
+		public Session GetCurrentSession()
 		{
 			Contract.Assert (null != currentUser, "User is not logged in");
-			return currentUser.Session.SessionId;
+			return currentUser.Session;
 		}
 
 		/// <summary>
