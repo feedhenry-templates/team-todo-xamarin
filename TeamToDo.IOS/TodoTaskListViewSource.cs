@@ -47,6 +47,10 @@ namespace TeamToDo.IOS
 			
             return cell;
         }
+
+        public ToDoTask GetItem(int id){
+            return this.tasks[id];
+        }
     }
 }
 

@@ -48,7 +48,8 @@ namespace TeamToDo.PCL
 			FHResponse listRes = await FH.Cloud ("/cloud/fetchUserListAction", "POST", null, rp.ToDictionary ());
 			if (null == listRes.Error) {
 				JObject resJson = listRes.GetResponseAsJObject ();
-				List<User> users = JsonConvert.DeserializeObject<List<User>> ((string)resJson["response"] ["payload"] ["fetchUsers"] ["userList"]);
+                JArray userlist = (JArray)resJson["response"]["payload"]["fetchUsers"]["userList"];
+                List<User> users = JsonConvert.DeserializeObject<List<User>> (userlist.ToString());
 				return users;
 			} else {
 				throw listRes.Error;

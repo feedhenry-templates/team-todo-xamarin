@@ -9,7 +9,7 @@ namespace TeamToDo.PCL
 	/// </summary>
 	public class ToDoTask
 	{
-		private Location location;
+        private Location location = new Location();
 		public ToDoTask ()
 		{
 		}
@@ -24,7 +24,7 @@ namespace TeamToDo.PCL
 		public string Description { get; set ;}
 
 		[JsonProperty("deadline")]
-		public string Deadline { get; set; }
+        public DateTime Deadline { get; set; }
 
 		[JsonProperty("assignedTo")]
 		public User AssignedTo { get; set;}

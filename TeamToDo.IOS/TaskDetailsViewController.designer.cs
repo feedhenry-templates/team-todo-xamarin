@@ -1,12 +1,10 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Xamarin Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
-using System;
 using MonoTouch.Foundation;
-using MonoTouch.UIKit;
 using System.CodeDom.Compiler;
 
 namespace TeamToDo.IOS
@@ -15,14 +13,67 @@ namespace TeamToDo.IOS
 	partial class TaskDetailsViewController
 	{
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UITableView taskDetails { get; set; }
+		MonoTouch.UIKit.UISwitch completed { get; set; }
 
+		[Outlet]
+		MonoTouch.UIKit.UITextField deadlineField { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UITextView descField { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UITextField noteField { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIButton saveBtn { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UITableView taskDetails { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UITextField titleField { get; set; }
+
+		[Action ("onTap:")]
+		partial void onTap (MonoTouch.Foundation.NSObject sender);
+
+		[Action ("saveTask:")]
+		partial void saveTask (MonoTouch.Foundation.NSObject sender);
+		
 		void ReleaseDesignerOutlets ()
 		{
 			if (taskDetails != null) {
 				taskDetails.Dispose ();
 				taskDetails = null;
+			}
+
+			if (titleField != null) {
+				titleField.Dispose ();
+				titleField = null;
+			}
+
+			if (completed != null) {
+				completed.Dispose ();
+				completed = null;
+			}
+
+			if (saveBtn != null) {
+				saveBtn.Dispose ();
+				saveBtn = null;
+			}
+
+			if (descField != null) {
+				descField.Dispose ();
+				descField = null;
+			}
+
+			if (noteField != null) {
+				noteField.Dispose ();
+				noteField = null;
+			}
+
+			if (deadlineField != null) {
+				deadlineField.Dispose ();
+				deadlineField = null;
 			}
 		}
 	}

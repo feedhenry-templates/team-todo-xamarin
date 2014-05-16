@@ -121,6 +121,11 @@
     <Compile Include="TodoTaskListViewController.designer.cs" />
     <Compile Include="TaskDetailsViewController.designer.cs" />
     <Compile Include="TaskDetailsViewController.cs" />
+    <Compile Include="TaskCreateViewController.cs" />
+    <Compile Include="TaskCreateViewController.designer.cs">
+      <DependentUpon>TaskCreateViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ActionSheetPicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />

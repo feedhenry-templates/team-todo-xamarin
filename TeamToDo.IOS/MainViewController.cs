@@ -29,8 +29,8 @@ namespace TeamToDo.IOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            FHClient.SetLogLevel((int)LogService.LogLevels.DEBUG);
-            FHClient.Init();
+            this.loginBtn.Enabled = false;
+            InitFH();
             // Perform any additional setup after loading the view, typically from a nib.
         }
 
@@ -55,6 +55,13 @@ namespace TeamToDo.IOS
         }
 
         #endregion
+
+        private async Task InitFH()
+        {
+            FHClient.SetLogLevel((int)LogService.LogLevels.DEBUG);
+            await FHClient.Init();
+            this.loginBtn.Enabled = true;
+        }
 
         partial void LoginTouched (UIButton sender)
         {
