@@ -39,6 +39,7 @@
     <Compile Include="Managers\ToDoTaskManager.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\TaskService.cs" />
+    <Compile Include="TodoApp.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
