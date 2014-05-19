@@ -61,6 +61,7 @@
     <Compile Include="LoginActivity.cs" />
     <Compile Include="TaskListView.cs" />
     <Compile Include="TaskDetailsView.cs" />
+    <Compile Include="TaskCreateView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -79,6 +80,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_new.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_new.png" />
     <AndroidResource Include="Resources\layout\TaskDetails.axml" />
+    <AndroidResource Include="Resources\layout\tasks_shared_fields.axml" />
+    <AndroidResource Include="Resources\layout\TaskCreate.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

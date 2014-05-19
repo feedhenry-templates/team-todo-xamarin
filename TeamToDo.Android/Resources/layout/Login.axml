@@ -13,6 +13,13 @@
         android:typeface="normal"
         android:textStyle="bold"
         android:textSize="20dp" />
+    <TextView
+        android:text="Logins are Spengler, Venkman, Stantz and Zeddemore Password is TheKeymaster"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:gravity="center" />
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"

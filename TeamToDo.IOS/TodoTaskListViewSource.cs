@@ -7,6 +7,9 @@ using TeamToDo.PCL;
 
 namespace TeamToDo.IOS
 {
+    /// <summary>
+    /// the data source for the task list view
+    /// </summary>
     public class TodoTaskListViewSource : UITableViewSource
     {
         private List<ToDoTask> tasks = null;

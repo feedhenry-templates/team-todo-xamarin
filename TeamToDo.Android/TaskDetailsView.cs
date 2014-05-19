@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace TeamToDo.Android
 {
+    /// <summary>
+    /// task details view activity
+    /// </summary>
     [Activity(Label = "Details", ParentActivity = typeof(TaskListView))]			
     public class TaskDetailsView : Activity
     {
@@ -40,6 +43,7 @@ namespace TeamToDo.Android
             noteField = (EditText)FindViewById(Resource.Id.taskNoteField);
             completeField = (Switch)FindViewById(Resource.Id.taskCompletedField);
             saveButton = (Button)FindViewById(Resource.Id.saveTaskDetailsButton);
+            deadlineField.Enabled = false;
 
             string taskJson = data.GetString("task");
             currentTask = JsonConvert.DeserializeObject<ToDoTask>(taskJson);
@@ -63,7 +67,13 @@ namespace TeamToDo.Android
 
         private async Task UpdateTask()
         {
-            await TodoApp.UpdateTask(currentTask);
+            if(completeField.Checked){
+                await TodoApp.CompleteTask(currentTask);
+            } else {
+                await TodoApp.UpdateTask(currentTask);
+            }
+            Toast.MakeText(this, "Task Updated", ToastLength.Short).Show();
+            this.SetResult(Result.Ok);
             this.Finish();
         }
     }

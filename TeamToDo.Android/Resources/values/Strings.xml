@@ -2,4 +2,5 @@
 <resources>
 	<string name="action_new">Create</string>
 	<string name="app_name">TeamToDo.Android</string>
+	<string name="exit_app">Exit</string>
 </resources>

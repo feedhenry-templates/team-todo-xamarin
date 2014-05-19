@@ -14,27 +14,33 @@ using Newtonsoft.Json;
 
 namespace TeamToDo.Android
 {
+    /// <summary>
+    /// The task list view activity
+    /// </summary>
     [Activity(Label = "My Tasks")]			
     public class TaskListView : ListActivity
     {
         List<ToDoTask> tasks = new List<ToDoTask>();
-        ToDoTaskManager taskManager = null;
+
+        const int DETAIL_TASK = 0;
+        const int CREATE_TASK = 1;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            TeamToDo.PCL.UserManager um = TeamToDo.PCL.UserManager.GetInstance();
-            taskManager = new ToDoTaskManager(um.GetCurrentSession());
             LoadTasks();
         }
 
         private async Task LoadTasks()
         {
-
-            tasks = await taskManager.ListTasks();
+            //list tasks
+            tasks = await TodoApp.ListUserTasks();
+            //populate the list view
             this.ListAdapter = new TaskListAdapter(this, tasks);
         }
 
+        //show the task details when user click on a task
         protected override void OnListItemClick(ListView l, View v, int position, long id)
         {
             ToDoTask task = tasks[position];
@@ -42,9 +48,10 @@ namespace TeamToDo.Android
             Bundle b = new Bundle();
             b.PutString("task", JsonConvert.SerializeObject(task));
             detailItent.PutExtras(b);
-            StartActivity(detailItent);
+            StartActivityForResult(detailItent, DETAIL_TASK);
         }
 
+        //show the task creation view when user click on the "+" button
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater mi = this.MenuInflater;
@@ -65,9 +72,44 @@ namespace TeamToDo.Android
 
         private void CreateNewTask()
         {
-
+            Intent createTaskIntent = new Intent(this, typeof(TaskCreateView));
+            StartActivityForResult(createTaskIntent, CREATE_TASK);
         }
 
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if(resultCode == Result.Ok)
+            {
+                ReloadTasks();
+            }
+        }
+
+        private async Task ReloadTasks()
+        {
+            tasks = await TodoApp.ListUserTasks();
+            TaskListAdapter adapter = (TaskListAdapter) this.ListAdapter;
+            adapter.Reload(tasks);
+            this.ListView.InvalidateViews();
+            this.ListView.RefreshDrawableState();
+        }
+
+        public override void OnBackPressed()
+        {
+            AlertDialog.Builder ab = new AlertDialog.Builder(this);
+            ab.SetCancelable(true);
+            ab.SetTitle("Logout");
+            ab.SetMessage("Are you sure to logout?");
+            ab.SetPositiveButton(Resource.String.exit_app, OnExit);
+            ab.Show();
+        }
+
+        private void OnExit(object IntentSender, DialogClickEventArgs e)
+        {
+            TodoApp.Logout();
+            this.Finish();
+        }
     }
 
     public class TaskListAdapter : BaseAdapter<ToDoTask>
@@ -104,6 +146,12 @@ namespace TeamToDo.Android
             view.FindViewById<TextView>(Android.Resource.Id.taskTitle).Text = tasks[position].Title;
             view.FindViewById<TextView>(Android.Resource.Id.taskDetails).Text = tasks[position].Description;
             return view;
+        }
+
+        public void Reload(List<ToDoTask> tasks)
+        {
+            this.tasks = tasks;
+            this.NotifyDataSetChanged();
         }
 
 

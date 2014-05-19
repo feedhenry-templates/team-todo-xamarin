@@ -10,6 +10,9 @@ using TeamToDo.PCL;
 
 namespace TeamToDo.IOS
 {
+    /// <summary>
+    /// The view controller for the create task view
+    /// </summary>
 	partial class TaskCreateViewController : UITableViewController
 	{
         ActionSheetDatePicker datePicker;

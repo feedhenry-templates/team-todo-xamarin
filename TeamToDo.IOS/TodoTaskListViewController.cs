@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 
 namespace TeamToDo.IOS
 {
+    /// <summary>
+    /// The view controller for the task list
+    /// </summary>
 	partial class TodoTaskListViewController : UITableViewController
 	{
 
@@ -18,7 +21,6 @@ namespace TeamToDo.IOS
 		}
 
         private List<ToDoTask> tasks = null;
-        private ToDoTaskManager taskManager = null;
 
         public override void ViewDidLoad()
         {
@@ -29,10 +31,9 @@ namespace TeamToDo.IOS
 
         private async Task LoadTasks()
         {
-            Debug.WriteLine("Calling LoadTasks");
-            UserManager um = UserManager.GetInstance();
-            taskManager = new ToDoTaskManager(um.GetCurrentSession());
-            tasks = await taskManager.ListTasks();
+            //load tasks for the current user
+            tasks = await TodoApp.ListUserTasks();
+            //populate the list view
             ShowTasks();
         }
             
@@ -63,19 +64,18 @@ namespace TeamToDo.IOS
 
         public void SaveTask(ToDoTask task, bool completed){
             if(completed){
-                taskManager.CompleteTask(task);
+                TodoApp.CompleteTask(task);
             } else {
-                taskManager.UpdateTask(task);
+                TodoApp.UpdateTask(task);
             }
         }
 
         public async Task CreateTask(ToDoTask task)
         {
             Debug.WriteLine(JsonConvert.SerializeObject(task));
-            taskManager.CreateTask(task);
+            TodoApp.CreateTask(task);
             //tasks = await taskManager.ListTasks();
             //ShowTasks();
-
         }
 	}
 }

@@ -12,6 +12,9 @@ using Android.OS;
 
 namespace TeamToDo.Android
 {
+    /// <summary>
+    /// Login view activity
+    /// </summary>
     [Activity(Label = "TeamToDo.Android", MainLauncher = true)]
     public class LoginActivity : Activity
     {
@@ -37,6 +40,10 @@ namespace TeamToDo.Android
 
         }
 
+        /// <summary>
+        /// Init the FHClient for the android app
+        /// </summary>
+        /// <returns>The F.</returns>
         private async Task InitFH()
         {
             FHClient.SetLogLevel((int)LogService.LogLevels.DEBUG);
@@ -54,13 +61,18 @@ namespace TeamToDo.Android
             };
         }
 
+        /// <summary>
+        /// Do login
+        /// </summary>
+        /// <returns>The login.</returns>
+        /// <param name="username">Username.</param>
+        /// <param name="password">Password.</param>
         private async Task DoLogin(string username, string password)
         {
             ProgressDialog dialog = null;
             try{
-                TeamToDo.PCL.UserManager userManager = TeamToDo.PCL.UserManager.GetInstance();
                 dialog = Utils.ShowLoading(this, "Logging in...", "Please wait");
-                await userManager.Login(username, password);
+                await TodoApp.Login(username, password);
                 Utils.StopLoading(dialog);
                 StartActivity(new Intent(this, typeof(TaskListView)));
             } catch (Exception e)

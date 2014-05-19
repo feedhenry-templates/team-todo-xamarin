@@ -9,6 +9,9 @@ using System.Diagnostics;
 
 namespace TeamToDo.IOS
 {
+    /// <summary>
+    /// The login view for the ios app
+    /// </summary>
     public partial class MainViewController : UIViewController
     {
         public MainViewController(IntPtr handle) : base(handle)
@@ -56,6 +59,10 @@ namespace TeamToDo.IOS
 
         #endregion
 
+        /// <summary>
+        /// Init the FHClient
+        /// </summary>
+        /// <returns>The F.</returns>
         private async Task InitFH()
         {
             FHClient.SetLogLevel((int)LogService.LogLevels.DEBUG);
@@ -76,15 +83,17 @@ namespace TeamToDo.IOS
                 ShowAlert("Error", "Please enter your username and password");
             }
             try{
-                UserManager userManager = UserManager.GetInstance();
+                //add activity spinner
                 UIActivityIndicatorView activityView = new UIActivityIndicatorView();
                 activityView.ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray;
                 activityView.Center = this.View.Center;
                 this.View.AddSubview(activityView);
                 activityView.StartAnimating();
 
-                await userManager.Login(userName, password);
+                //call login
+                await TodoApp.Login(userName, password);
 
+                //login success, continue
                 activityView.StopAnimating();
                 activityView.RemoveFromSuperview();
 
@@ -94,7 +103,7 @@ namespace TeamToDo.IOS
 
 
             }catch(Exception e){
-                Debug.WriteLine(e.Message);
+                //login failed, show the error
                 ShowAlert("Error", "Login Failed");
             }
         }

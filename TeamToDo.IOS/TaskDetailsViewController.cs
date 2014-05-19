@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 namespace TeamToDo.IOS
 {
+    /// <summary>
+    /// The view controller for the app's details view
+    /// </summary>
 	partial class TaskDetailsViewController : UITableViewController
 	{
 		public TaskDetailsViewController (IntPtr handle) : base (handle)
