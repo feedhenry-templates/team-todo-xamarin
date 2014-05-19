@@ -29,5 +29,10 @@ and here is the architecture diagram:
 ![](images/architecture.png?raw=true)
 
 
+## ToDos
+
+* Add WP Sample
+* Add Map View to allow choose task location
+
 
 
