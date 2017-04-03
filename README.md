@@ -26,7 +26,7 @@ and here is the architecture diagram:
 
 ## Architecture
 
-![](images/architecture.png?raw=true)
+![](https://raw.githubusercontent.com/feedhenry-templates/team-todo-xamarin/master/images/architecture.png)
 
 
 ## ToDos
