@@ -1,5 +1,7 @@
 # Xamarin Team To Do Apps
 
+[![AppVeyor](https://img.shields.io/appveyor/ci/feedhenry-templates/team-todo-xamarin/master.svg)](https://ci.appveyor.com/project/feedhenry/team-todo-xamarin/) 
+
 ## Overview
 
 Example project to demostrate how to develop cloud-connected native cross-platform apps using [Xamarin](http://xamarin.com/) and [FeedHenry .NET SDK](https://github.com/feedhenry/fh-dotnet-sdk). 
