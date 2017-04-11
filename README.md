@@ -1,6 +1,6 @@
 # Xamarin Team To Do Apps
 
-[![AppVeyor](https://img.shields.io/appveyor/ci/feedhenry-templates/team-todo-xamarin/master.svg)](https://ci.appveyor.com/project/feedhenry/team-todo-xamarin/) 
+[![AppVeyor](https://img.shields.io/appveyor/ci/feedhenry/team-todo-xamarin/master.svg)](https://ci.appveyor.com/project/feedhenry/team-todo-xamarin/) 
 
 ## Overview
 
